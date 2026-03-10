@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ILM HUB — Learn Arabic and explore Islamic knowledge. Quran study, Arabic alphabet, dictionary, and guided courses for Russian and Kazakh-speaking learners." />
+  <meta name="keywords" content="Arabic learning, Quran, Islamic education, Arabic alphabet, Hajj, Umra, Kazakhstan, Russian, mobile app" />
+  <meta name="author" content="ILM HUB" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ilmhub.kz/" />
+  <meta property="og:title" content="ILM HUB — Arabic & Islamic Learning Platform" />
+  <meta property="og:description" content="Learn Arabic and explore Islamic knowledge with ILM HUB. Designed for Russian and Kazakh-speaking learners." />
+  <meta property="og:image" content="https://ilmhub.kz/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ILM HUB — Arabic & Islamic Learning Platform" />
+  <meta name="twitter:description" content="Learn Arabic and explore Islamic knowledge with ILM HUB." />
+
+  <title>ILM HUB — Arabic & Islamic Learning Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-900: #0D3D27;
+      --green-800: #145A38;
+      --green-700: #1A7347;
+      --green-600: #1E8C55;
+      --green-500: #22A563;
+      --green-400: #34C47A;
+      --green-100: #E6F5EE;
+      --green-50:  #F0FAF4;
+
+      --gold-600:  #B8860B;
+      --gold-500:  #D4A017;
+      --gold-400:  #F0BE2E;
+      --gold-100:  #FDF5DC;
+
+      --gray-900:  #111827;
+      --gray-800:  #1F2937;
+      --gray-700:  #374151;
+      --gray-600:  #4B5563;
+      --gray-500:  #6B7280;
+      --gray-400:  #9CA3AF;
+      --gray-300:  #D1D5DB;
+      --gray-200:  #E5E7EB;
+      --gray-100:  #F3F4F6;
+      --gray-50:   #F9FAFB;
+      --white:     #FFFFFF;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+      --radius-xl:  32px;
+
+      --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:  0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+      --shadow-lg:  0 12px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      --shadow-xl:  0 24px 48px rgba(0,0,0,.14);
+
+      --transition: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Navigation ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--green-800);
+    }
+
+    .nav__logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Amiri', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(30,140,85,.35);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.925rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover { color: var(--green-700); }
+
+    .nav__cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 0.925rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(30,140,85,.30);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--green-800), var(--green-600));
+      box-shadow: 0 4px 16px rgba(30,140,85,.40);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--green-700);
+      border: 1.5px solid var(--green-400);
+    }
+
+    .btn-secondary:hover {
+      background: var(--green-50);
+      border-color: var(--green-600);
+    }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+    }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gray-700);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--green-900) 0%, var(--green-800) 45%, #1A4A2E 100%);
+      color: var(--white);
+      padding: 100px 0 80px;
+    }
+
+    .hero__bg-pattern {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero__bg-pattern::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,196,122,.12) 0%, transparent 70%);
+    }
+
+    .hero__bg-pattern::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,160,23,.08) 0%, transparent 70%);
+    }
+
+    .hero__arabic-bg {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      font-family: 'Amiri', serif;
+      font-size: clamp(120px, 18vw, 260px);
+      color: rgba(255,255,255,.04);
+      user-select: none;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-400);
+      border-radius: 50%;
+    }
+
+    .hero__title {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero__title-accent {
+      background: linear-gradient(90deg, var(--gold-400), #FFD97D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__subtitle {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .hero__stat-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero__stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 4px;
+    }
+
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-mockup {
+      position: relative;
+      width: 260px;
+      height: 520px;
+    }
+
+    .phone-mockup__frame {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #1A1A2E, #16213E);
+      border-radius: 40px;
+      border: 6px solid rgba(255,255,255,.15);
+      box-shadow: 0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.05), inset 0 0 0 1px rgba(255,255,255,.03);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-mockup__notch {
+      width: 100px;
+      height: 28px;
+      background: #111;
+      border-radius: 0 0 20px 20px;
+      margin: 0 auto;
+    }
+
+    .phone-mockup__screen {
+      flex: 1;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .screen-greeting {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    .screen-greeting strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .screen-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-500), var(--green-700));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    .screen-card {
+      background: linear-gradient(135deg, var(--green-800), var(--green-900));
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .screen-card-label {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .screen-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 1.4rem;
+      color: var(--gold-400);
+      text-align: center;
+      padding: 6px 0;
+      direction: rtl;
+    }
+
+    .screen-translation {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,.65);
+      text-align: center;
+    }
+
+    .screen-progress-label {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .screen-progress-bar {
+      height: 5px;
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .screen-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green-400), var(--green-500));
+      border-radius: 10px;
+      width: 68%;
+    }
+
+    .screen-lessons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .screen-lesson-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.04);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .lesson-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .lesson-icon.green { background: rgba(34,165,99,.2); }
+    .lesson-icon.gold  { background: rgba(212,160,23,.2); }
+    .lesson-icon.blue  { background: rgba(59,130,246,.2); }
+
+    .lesson-info { flex: 1; }
+
+    .lesson-title {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,.85);
+      font-weight: 500;
+    }
+
+    .lesson-subtitle {
+      font-size: 0.58rem;
+      color: rgba(255,255,255,.4);
+      margin-top: 1px;
+    }
+
+    .lesson-badge {
+      font-size: 0.55rem;
+      padding: 2px 6px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    .badge-green { background: rgba(34,165,99,.2); color: var(--green-400); }
+    .badge-gold  { background: rgba(212,160,23,.2); color: var(--gold-400); }
+
+    /* ─── Section Commons ─── */
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--gray-50); }
+    .section--dark { background: var(--gray-900); color: var(--white); }
+
+    .section__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green-600);
+      margin-bottom: 12px;
+    }
+
+    .section__eyebrow-line {
+      width: 24px;
+      height: 2px;
+      background: var(--green-500);
+      border-radius: 2px;
+    }
+
+    .section__title {
+      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+    }
+
+    .section--dark .section__title { color: var(--white); }
+    .section--dark .section__eyebrow { color: var(--green-400); }
+
+    .section__subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    .section--dark .section__subtitle { color: rgba(255,255,255,.55); }
+
+    .section__header { margin-bottom: 56px; }
+    .section__header--center { text-align: center; }
+    .section__header--center .section__eyebrow { justify-content: center; }
+    .section__header--center .section__subtitle { margin: 0 auto; }
+
+    /* ─── Features ─── */
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-500), var(--green-300));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--green-200);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-card__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .icon-green { background: var(--green-100); }
+    .icon-gold  { background: var(--gold-100); }
+    .icon-blue  { background: #EFF6FF; }
+    .icon-purple{ background: #F5F3FF; }
+    .icon-rose  { background: #FFF1F2; }
+    .icon-teal  { background: #F0FDFA; }
+
+    .feature-card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+
+    .feature-card__desc {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ─── How It Works ─── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: calc(16.67% + 20px);
+      right: calc(16.67% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-200), var(--green-400), var(--green-200));
+      border-radius: 2px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step__number {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      color: var(--white);
+      font-size: 1.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(30,140,85,.30);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+
+    .step__desc {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ─── Content Categories ─── */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .category-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all 0.25s;
+    }
+
+    .category-card:hover {
+      border-color: var(--green-300);
+      box-shadow: var(--shadow-md);
+    }
+
+    .category-card__icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .category-card__content { flex: 1; }
+
+    .category-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+
+    .category-card__desc {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .category-card__tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green-700);
+      background: var(--green-100);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ─── Testimonials / Quote ─── */
+    .quote-section {
+      background: linear-gradient(135deg, var(--green-900), var(--green-800));
+      border-radius: var(--radius-xl);
+      padding: 72px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '"';
+      font-family: 'Amiri', serif;
+      font-size: 200px;
+      color: rgba(255,255,255,.05);
+      position: absolute;
+      top: -20px;
+      left: 30px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .quote-section__arabic {
+      font-family: 'Amiri', serif;
+      font-size: 2rem;
+      color: var(--gold-400);
+      direction: rtl;
+      margin-bottom: 12px;
+    }
+
+    .quote-section__translation {
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 8px;
+    }
+
+    .quote-section__source {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,.4);
+    }
+
+    /* ─── About ─── */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about__values {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .about__value {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .about__value-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--green-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .about__value-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+
+    .about__value-desc {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .about__visual {
+      position: relative;
+    }
+
+    .about__card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about__card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .about__stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about__stat {
+      text-align: center;
+      padding: 20px;
+      background: var(--green-50);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--green-100);
+    }
+
+    .about__stat-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green-700);
+    }
+
+    .about__stat-label {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    .about__tech-stack {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      border-radius: 100px;
+      border: 1px solid var(--gray-200);
+    }
+
+    /* ─── Contact ─── */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact__info { display: flex; flex-direction: column; gap: 24px; }
+
+    .contact__item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact__item-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--green-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact__item-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-400);
+      margin-bottom: 2px;
+    }
+
+    .contact__item-value {
+      font-size: 0.975rem;
+      font-weight: 500;
+      color: var(--gray-800);
+    }
+
+    .contact__item-value a {
+      color: var(--green-700);
+    }
+
+    .contact__item-value a:hover {
+      text-decoration: underline;
+    }
+
+    .contact__form {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact__form-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--gray-800);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--green-500);
+      box-shadow: 0 0 0 3px rgba(34,165,99,.15);
+    }
+
+    .form-textarea { resize: vertical; min-height: 110px; }
+
+    /* ─── Download CTA ─── */
+    .download-section {
+      text-align: center;
+      padding: 96px 0;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 26px;
+      background: var(--gray-900);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      border: 1px solid var(--gray-700);
+    }
+
+    .store-btn:hover {
+      background: var(--gray-800);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .store-btn__icon { font-size: 1.6rem; }
+
+    .store-btn__label { font-size: 0.7rem; color: rgba(255,255,255,.6); }
+    .store-btn__name  { font-size: 0.95rem; font-weight: 700; margin-top: 1px; }
+
+    /* ─── Footer ─── */
+    .footer {
+      background: var(--gray-900);
+      color: rgba(255,255,255,.6);
+      padding: 60px 0 32px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .footer__logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Amiri', serif;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .footer__about {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 20px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer__social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .footer__social-link:hover {
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+    }
+
+    .footer__col-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,.45);
+      transition: color 0.2s;
+    }
+
+    .footer__links a:hover { color: rgba(255,255,255,.85); }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer__legal a {
+      color: rgba(255,255,255,.3);
+      transition: color 0.2s;
+    }
+
+    .footer__legal a:hover { color: rgba(255,255,255,.7); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .features__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+
+      .hero { padding: 64px 0 56px; }
+      .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero__visual { display: none; }
+      .hero__stats { gap: 20px; }
+
+      .section { padding: 64px 0; }
+
+      .features__grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 24px; }
+      .steps::before { display: none; }
+
+      .categories { grid-template-columns: 1fr; }
+      .about__grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact__grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      .quote-section { padding: 48px 28px; }
+      .quote-section__arabic { font-size: 1.5rem; }
+
+      .btn-lg { width: 100%; justify-content: center; }
+      .hero__actions { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .about__stat-grid { grid-template-columns: 1fr 1fr; }
+      .store-buttons { flex-direction: column; align-items: center; }
+    }
+
+    /* ─── Utility ─── */
+    .text-green { color: var(--green-600); }
+    .text-gold  { color: var(--gold-500); }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="/" class="nav__logo">
+          <div class="nav__logo-icon">ع</div>
+          ILM HUB
+        </a>
+        <ul class="nav__links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#content">Content</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <a href="#download" class="btn btn-primary">Download App</a>
+        </div>
+        <div class="nav__hamburger" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home">
+    <div class="hero__bg-pattern"></div>
+    <div class="hero__arabic-bg">علم</div>
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            Now available on iOS &amp; Android
+          </div>
+          <h1 class="hero__title">
+            Learn Arabic.<br />
+            Explore <span class="hero__title-accent">Islamic Knowledge.</span>
+          </h1>
+          <p class="hero__subtitle">
+            ILM HUB is a modern educational platform designed for Russian and Kazakh-speaking learners. Master the Arabic alphabet, study the Quran, build your vocabulary, and prepare for Hajj &amp; Umra — all in one beautifully designed app.
+          </p>
+          <div class="hero__actions">
+            <a href="#download" class="btn btn-primary btn-lg">
+              <span>⬇</span> Download Free
+            </a>
+            <a href="#features" class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.9);">
+              Explore Features
+            </a>
+          </div>
+          <div class="hero__stats">
+            <div>
+              <div class="hero__stat-value">28+</div>
+              <div class="hero__stat-label">Lessons &amp; Modules</div>
+            </div>
+            <div>
+              <div class="hero__stat-value">5000+</div>
+              <div class="hero__stat-label">Dictionary Entries</div>
+            </div>
+            <div>
+              <div class="hero__stat-value">114</div>
+              <div class="hero__stat-label">Surahs of the Quran</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="phone-mockup">
+            <div class="phone-mockup__frame">
+              <div class="phone-mockup__notch"></div>
+              <div class="phone-mockup__screen">
+                <div class="screen-header">
+                  <div class="screen-greeting">
+                    <span>Assalamu Alaikum</span>
+                    <strong>Ahmad 👋</strong>
+                  </div>
+                  <div class="screen-avatar">А</div>
+                </div>
+                <div class="screen-card">
+                  <div class="screen-card-label">Today's Word</div>
+                  <div class="screen-arabic">عِلْم</div>
+                  <div class="screen-translation">Knowledge (Ilm)</div>
+                </div>
+                <div>
+                  <div class="screen-progress-label">
+                    <span>Daily Progress</span>
+                    <span style="color:var(--green-400)">68%</span>
+                  </div>
+                  <div class="screen-progress-bar">
+                    <div class="screen-progress-fill"></div>
+                  </div>
+                </div>
+                <div class="screen-lessons">
+                  <div class="screen-lesson-item">
+                    <div class="lesson-icon green">📖</div>
+                    <div class="lesson-info">
+                      <div class="lesson-title">Arabic Alphabet</div>
+                      <div class="lesson-subtitle">Lesson 4 of 12</div>
+                    </div>
+                    <span class="lesson-badge badge-green">New</span>
+                  </div>
+                  <div class="screen-lesson-item">
+                    <div class="lesson-icon gold">☪</div>
+                    <div class="lesson-info">
+                      <div class="lesson-title">Quran — Al-Fatiha</div>
+                      <div class="lesson-subtitle">Audio + Tafsir</div>
+                    </div>
+                    <span class="lesson-badge badge-gold">★ 4.9</span>
+                  </div>
+                  <div class="screen-lesson-item">
+                    <div class="lesson-icon blue">🕌</div>
+                    <div class="lesson-info">
+                      <div class="lesson-title">Hajj &amp; Umra Guide</div>
+                      <div class="lesson-subtitle">Step-by-step rituals</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section class="section section--alt" id="features">
+    <div class="container">
+      <div class="section__header section__header--center">
+        <div class="section__eyebrow">
+          <span class="section__eyebrow-line"></span>
+          What We Offer
+          <span class="section__eyebrow-line"></span>
+        </div>
+        <h2 class="section__title">Everything You Need to Learn Arabic &amp; Islam</h2>
+        <p class="section__subtitle">A comprehensive suite of tools carefully designed to make Arabic and Islamic education accessible, engaging, and effective.</p>
+      </div>
+      <div class="features__grid">
+        <div class="feature-card">
+          <div class="feature-card__icon icon-green">📚</div>
+          <div class="feature-card__title">Arabic Alphabet</div>
+          <p class="feature-card__desc">Learn all 28 Arabic letters with correct pronunciation, writing guides, and interactive exercises. From beginner to confident reader.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon icon-gold">☪️</div>
+          <div class="feature-card__title">Quran Study</div>
+          <p class="feature-card__desc">Browse all 114 Surahs with Arabic text, transliteration, translations in Russian and Kazakh, and audio recitation by renowned scholars.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon icon-blue">📖</div>
+          <div class="feature-card__title">Arabic Dictionary</div>
+          <p class="feature-card__desc">A rich bilingual dictionary with over 5,000 Arabic words, phrases, examples, and audio pronunciation for Russian and Kazakh speakers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon icon-purple">✏️</div>
+          <div class="feature-card__title">Interactive Exercises</div>
+          <p class="feature-card__desc">Reinforce your learning with quizzes, fill-in-the-blank, matching, and writing exercises. Progress tracking keeps you motivated.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon icon-rose">🕌</div>
+          <div class="feature-card__title">Hajj &amp; Umra Guide</div>
+          <p class="feature-card__desc">Step-by-step guidance for the pilgrimage with maps, duas, rituals, and checklists. Prepare spiritually and practically for your journey.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon icon-teal">🎯</div>
+          <div class="feature-card__title">Structured Courses</div>
+          <p class="feature-card__desc">Follow curated learning paths with modules, lessons, and milestones. Progress at your own pace with offline support for anytime learning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENT CATEGORIES ═══ -->
+  <section class="section" id="content">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__eyebrow">
+          <span class="section__eyebrow-line"></span>
+          Content Library
+        </div>
+        <h2 class="section__title">Rich, Authentic Islamic &amp; Arabic Content</h2>
+        <p class="section__subtitle">Every lesson is authored with care, verified for accuracy, and designed to be culturally relevant for Russian and Kazakh-speaking Muslims.</p>
+      </div>
+      <div class="categories">
+        <div class="category-card">
+          <div class="category-card__icon-wrap icon-gold">☪️</div>
+          <div class="category-card__content">
+            <div class="category-card__title">Quran &amp; Tafsir</div>
+            <p class="category-card__desc">Read, listen to, and study the Quran with tafsir (interpretation) and translations. Includes verse-by-verse breakdown and subject search.</p>
+            <span class="category-card__tag">114 Surahs</span>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="category-card__icon-wrap icon-green">🔤</div>
+          <div class="category-card__content">
+            <div class="category-card__title">Arabic Language Courses</div>
+            <p class="category-card__desc">From alphabet recognition to reading and writing, structured courses guide beginners through progressive skill-building stages.</p>
+            <span class="category-card__tag">Beginner to Advanced</span>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="category-card__icon-wrap icon-rose">🕌</div>
+          <div class="category-card__content">
+            <div class="category-card__title">Hajj &amp; Umra Preparation</div>
+            <p class="category-card__desc">Comprehensive pilgrimage guide with step-by-step rituals, essential duas, spiritual preparation, and practical travel advice.</p>
+            <span class="category-card__tag">Pilgrimage Ready</span>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="category-card__icon-wrap icon-blue">📝</div>
+          <div class="category-card__content">
+            <div class="category-card__title">Duas &amp; Adhkar</div>
+            <p class="category-card__desc">Daily supplications, morning and evening adhkar, and situational duas — in Arabic with transliteration and translation.</p>
+            <span class="category-card__tag">Daily Practice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QURAN QUOTE ═══ -->
+  <section class="section" style="padding: 0 0 96px;">
+    <div class="container">
+      <div class="quote-section">
+        <div class="quote-section__arabic">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div>
+        <p class="quote-section__translation">"Read in the name of your Lord who created."</p>
+        <p class="quote-section__source">— Surah Al-Alaq, 96:1</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="section section--alt" id="how-it-works">
+    <div class="container">
+      <div class="section__header section__header--center">
+        <div class="section__eyebrow">
+          <span class="section__eyebrow-line"></span>
+          How It Works
+          <span class="section__eyebrow-line"></span>
+        </div>
+        <h2 class="section__title">Start Learning in Minutes</h2>
+        <p class="section__subtitle">Getting started with ILM HUB is simple. Create your profile, pick your learning goal, and begin your journey.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">1</div>
+          <h3 class="step__title">Download &amp; Sign Up</h3>
+          <p class="step__desc">Download the app for free on iOS or Android. Create your account in seconds using email, Google, or Apple ID.</p>
+        </div>
+        <div class="step">
+          <div class="step__number">2</div>
+          <h3 class="step__title">Choose Your Path</h3>
+          <p class="step__desc">Select your learning goal — Arabic alphabet, Quran study, vocabulary building, or pilgrimage preparation.</p>
+        </div>
+        <div class="step">
+          <div class="step__number">3</div>
+          <h3 class="step__title">Learn &amp; Progress</h3>
+          <p class="step__desc">Complete daily lessons, track your progress, and earn milestones as you build your Arabic language and Islamic knowledge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__content">
+          <div class="section__eyebrow">
+            <span class="section__eyebrow-line"></span>
+            About ILM HUB
+          </div>
+          <h2 class="section__title">Built for Muslim Learners in Central Asia</h2>
+          <p class="section__subtitle">ILM HUB was founded with a clear mission: make authentic Islamic education and Arabic language learning accessible to Russian and Kazakh-speaking communities worldwide.</p>
+
+          <div class="about__values">
+            <div class="about__value">
+              <div class="about__value-icon">🌍</div>
+              <div>
+                <div class="about__value-title">Localized for Our Audience</div>
+                <p class="about__value-desc">All content is available in Russian and Kazakh — the languages of millions of Muslims in Kazakhstan and the broader CIS region.</p>
+              </div>
+            </div>
+            <div class="about__value">
+              <div class="about__value-icon">✅</div>
+              <div>
+                <div class="about__value-title">Verified Content</div>
+                <p class="about__value-desc">Our Islamic content is reviewed by qualified scholars to ensure accuracy, authenticity, and adherence to established principles.</p>
+              </div>
+            </div>
+            <div class="about__value">
+              <div class="about__value-icon">📱</div>
+              <div>
+                <div class="about__value-title">Mobile-First Design</div>
+                <p class="about__value-desc">Built natively for iOS and Android with offline capabilities, so you can learn anytime, even without an internet connection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__visual">
+          <div class="about__card">
+            <div class="about__card-title">
+              <span style="font-size:1.3rem">📊</span> Platform Overview
+            </div>
+            <div class="about__stat-grid">
+              <div class="about__stat">
+                <div class="about__stat-value">28+</div>
+                <div class="about__stat-label">Database Tables</div>
+              </div>
+              <div class="about__stat">
+                <div class="about__stat-value">10+</div>
+                <div class="about__stat-label">App Modules</div>
+              </div>
+              <div class="about__stat">
+                <div class="about__stat-value">iOS &amp; Android</div>
+                <div class="about__stat-label">Native Platforms</div>
+              </div>
+              <div class="about__stat">
+                <div class="about__stat-value">KZ / RU</div>
+                <div class="about__stat-label">Languages</div>
+              </div>
+            </div>
+            <div style="margin-top:20px; font-size:0.85rem; color:var(--gray-500); font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">Technology</div>
+            <div class="about__tech-stack">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">NestJS</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">BLoC</span>
+              <span class="tech-tag">AWS S3</span>
+              <span class="tech-tag">Docker</span>
+            </div>
+            <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray-200);">
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-bottom:8px;">Company</div>
+              <div style="font-size:0.95rem;font-weight:600;color:var(--gray-800);">ILM HUB Ltd.</div>
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-top:2px;">Almaty, Kazakhstan 🇰🇿</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DOWNLOAD CTA ═══ -->
+  <section class="section section--dark" id="download">
+    <div class="container">
+      <div class="download-section">
+        <div class="section__eyebrow" style="justify-content:center;color:var(--green-400);">
+          <span class="section__eyebrow-line" style="background:var(--green-400)"></span>
+          Get the App
+          <span class="section__eyebrow-line" style="background:var(--green-400)"></span>
+        </div>
+        <h2 class="section__title" style="color:var(--white);">Start Your Islamic Learning Journey Today</h2>
+        <p class="section__subtitle" style="color:rgba(255,255,255,.55);margin:0 auto;">Download ILM HUB for free and access the Arabic alphabet, Quran, dictionary, and Hajj guide — all in Russian and Kazakh.</p>
+        <div class="store-buttons">
+          <a href="#" class="store-btn">
+            <span class="store-btn__icon"></span>
+            <div>
+              <div class="store-btn__label">Download on the</div>
+              <div class="store-btn__name">App Store</div>
+            </div>
+          </a>
+          <a href="#" class="store-btn">
+            <span class="store-btn__icon">▶</span>
+            <div>
+              <div class="store-btn__label">Get it on</div>
+              <div class="store-btn__name">Google Play</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__eyebrow">
+          <span class="section__eyebrow-line"></span>
+          Contact Us
+        </div>
+        <h2 class="section__title">We'd Love to Hear From You</h2>
+        <p class="section__subtitle">Have a question about the app, a partnership proposal, or feedback? Reach out — our team is happy to help.</p>
+      </div>
+      <div class="contact__grid">
+        <div class="contact__info">
+          <div class="contact__item">
+            <div class="contact__item-icon">📧</div>
+            <div>
+              <div class="contact__item-label">Email</div>
+              <div class="contact__item-value"><a href="mailto:info@ilmhub.kz">info@ilmhub.kz</a></div>
+            </div>
+          </div>
+          <div class="contact__item">
+            <div class="contact__item-icon">🛠️</div>
+            <div>
+              <div class="contact__item-label">Support</div>
+              <div class="contact__item-value"><a href="mailto:support@ilmhub.kz">support@ilmhub.kz</a></div>
+            </div>
+          </div>
+          <div class="contact__item">
+            <div class="contact__item-icon">📍</div>
+            <div>
+              <div class="contact__item-label">Location</div>
+              <div class="contact__item-value">Almaty, Kazakhstan</div>
+            </div>
+          </div>
+          <div class="contact__item">
+            <div class="contact__item-icon">🌐</div>
+            <div>
+              <div class="contact__item-label">Website</div>
+              <div class="contact__item-value"><a href="https://ilmhub.kz">ilmhub.kz</a></div>
+            </div>
+          </div>
+          <div class="contact__item">
+            <div class="contact__item-icon">⏰</div>
+            <div>
+              <div class="contact__item-label">Business Hours</div>
+              <div class="contact__item-value">Monday – Friday, 9:00 – 18:00 (GMT+5)</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact__form">
+          <div class="contact__form-title">Send Us a Message</div>
+          <form onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" name="subject" placeholder="How can we help?" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">
+            <div class="footer__logo-icon">ع</div>
+            ILM HUB
+          </div>
+          <p class="footer__about">ILM HUB is an educational mobile platform for learning Arabic and exploring Islamic knowledge — built for Russian and Kazakh-speaking Muslims.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" title="Telegram">✈</a>
+            <a href="#" class="footer__social-link" title="Instagram">📷</a>
+            <a href="#" class="footer__social-link" title="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Product</div>
+          <ul class="footer__links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#content">Content Library</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#download">Download App</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Company</div>
+          <ul class="footer__links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="mailto:careers@ilmhub.kz">Careers</a></li>
+            <li><a href="mailto:press@ilmhub.kz">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Legal</div>
+          <ul class="footer__links">
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="mailto:info@ilmhub.kz">Data Requests</a></li>
+          </ul>
+          <div style="margin-top:24px;">
+            <div class="footer__col-title">Contact</div>
+            <ul class="footer__links">
+              <li><a href="mailto:info@ilmhub.kz">info@ilmhub.kz</a></li>
+              <li><a href="mailto:support@ilmhub.kz">support@ilmhub.kz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2024 ILM HUB Ltd. All rights reserved. Almaty, Kazakhstan.</div>
+        <div class="footer__legal">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="mailto:info@ilmhub.kz">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(btn) {
+      const links = document.querySelector('.nav__links');
+      const cta   = document.querySelector('.nav__cta');
+      if (!links) return;
+      const isOpen = links.style.display === 'flex';
+      links.style.cssText = isOpen ? '' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#fff;padding:20px 24px;border-bottom:1px solid #e5e7eb;gap:16px;z-index:99;';
+      if (cta) cta.style.cssText = isOpen ? '' : 'display:flex;flex-direction:column;padding:0 24px 20px;position:absolute;top:' + (68 + (links.childElementCount * 44)) + 'px;left:0;right:0;background:#fff;border-bottom:1px solid #e5e7eb;z-index:99;gap:10px;';
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = 'Message Sent ✓';
+      btn.style.background = 'linear-gradient(135deg,#145A38,#1A7347)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Smooth active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green-600)' : '';
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>

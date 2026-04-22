@@ -2,7 +2,9 @@
 
 import { motion } from "motion/react";
 import { Container, ContentNarrow } from "@/components/ui/Container";
+import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
 import { PhoneMock } from "@/components/ui/PhoneMock";
+import { howScreenImages } from "@/lib/landingImagePaths";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const cards = [
@@ -39,9 +41,15 @@ export function HowItWorksSection() {
 
           {/* Figma: 6 телефонов вплотную, без лишней подложки за корпусом */}
           <div className="mt-10 flex justify-center gap-1 overflow-x-auto px-1 pb-2 sm:gap-1.5 md:gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="w-[118px] shrink-0 sm:w-[136px] md:w-[152px] lg:w-[158px]">
-                <PhoneMock variant="how" className="w-full" label={`Экран приложения ${i + 1}`} />
+            {howScreenImages.map((src, i) => (
+              <div key={src} className="w-[118px] shrink-0 sm:w-[136px] md:w-[152px] lg:w-[158px]">
+                <FigmaExportImage
+                  src={src}
+                  alt={`Экран приложения ${i + 1}`}
+                  className="aspect-[202/420] w-full"
+                  sizes="(max-width: 768px) 24vw, 160px"
+                  fallback={<PhoneMock variant="how" className="w-full" label={`Экран приложения ${i + 1}`} />}
+                />
               </div>
             ))}
           </div>

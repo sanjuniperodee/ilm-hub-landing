@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/Container";
+import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
 import { PhoneMock } from "@/components/ui/PhoneMock";
+import { landingImages } from "@/lib/landingImagePaths";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 export function OnboardingSection() {
@@ -52,11 +54,17 @@ export function OnboardingSection() {
           >
             {/* Один телефон, лёгкий наклон к центру страницы — без «облака» тени за устройством */}
             <div className="origin-center rotate-[9deg] lg:origin-bottom-right lg:rotate-[11deg]">
-              <PhoneMock
-                variant="hero"
-                className="w-[min(288px,78vw)] max-w-[300px] sm:w-[300px] sm:max-w-[300px]"
-                label="Учебный план в приложении"
-              />
+              <div className="w-[min(288px,78vw)] max-w-[300px] sm:w-[300px] sm:max-w-[300px]">
+                <FigmaExportImage
+                  src={landingImages.onboardingPhone}
+                  alt="Учебный план в приложении ILM Hub"
+                  className="aspect-[273/458] w-full"
+                  sizes="(max-width: 1024px) 78vw, 300px"
+                  fallback={
+                    <PhoneMock variant="hero" className="w-full" label="Учебный план в приложении" />
+                  }
+                />
+              </div>
             </div>
           </motion.div>
         </div>

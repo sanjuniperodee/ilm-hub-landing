@@ -1,34 +1,25 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
+import { landingImages } from "@/lib/landingImagePaths";
 
 /**
- * Плейсхолдеры телефонов героя — без сплошной серой подложки на корпус, только безель + экран.
+ * Герой: один PNG из Figma (оба телефона в композиции). При отсутствии файла — CSS-мокапы.
  */
 export function HeroDevicePlaceholders() {
   const reduce = useReducedMotion();
 
-  const back = (
-    <div className="absolute left-[8%] top-[6%] z-0 w-[46%] max-w-[198px] rotate-[10deg] sm:left-[10%] sm:max-w-[204px]">
-      <DeviceFrame />
-    </div>
-  );
-  const front = (
-    <div className="relative z-[1] w-[52%] max-w-[228px] sm:max-w-[248px]">
-      <DeviceFrame />
-    </div>
-  );
-
-  if (reduce) {
-    return (
-      <div className="relative mx-auto flex h-[min(400px,56vw)] w-full max-w-[400px] items-end justify-center sm:h-[432px] sm:max-w-[432px] lg:mx-0 lg:justify-end">
-        {back}
-        {front}
+  const fallback = reduce ? (
+    <div className="relative mx-auto flex h-[min(400px,56vw)] w-full max-w-[400px] items-end justify-center sm:h-[432px] sm:max-w-[432px] lg:mx-0 lg:justify-end">
+      <div className="absolute left-[8%] top-[6%] z-0 w-[46%] max-w-[198px] rotate-[10deg] sm:left-[10%] sm:max-w-[204px]">
+        <DeviceFrame />
       </div>
-    );
-  }
-
-  return (
+      <div className="relative z-[1] w-[52%] max-w-[228px] sm:max-w-[248px]">
+        <DeviceFrame />
+      </div>
+    </div>
+  ) : (
     <div className="relative mx-auto flex h-[min(400px,56vw)] w-full max-w-[400px] items-end justify-center sm:h-[432px] sm:max-w-[432px] lg:mx-0 lg:justify-end">
       <motion.div
         aria-hidden
@@ -50,6 +41,19 @@ export function HeroDevicePlaceholders() {
       >
         <DeviceFrame />
       </motion.div>
+    </div>
+  );
+
+  return (
+    <div className="relative mx-auto w-full max-w-[440px] lg:ml-auto lg:mr-0">
+      <FigmaExportImage
+        src={landingImages.heroDevices}
+        alt="Два экрана приложения ILM Hub"
+        className="aspect-[350/357] w-full max-h-[min(420px,52vw)] min-h-[260px] sm:min-h-[320px]"
+        sizes="(max-width: 1024px) 92vw, 440px"
+        fallback={fallback}
+        priority
+      />
     </div>
   );
 }

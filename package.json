@@ -6,7 +6,8 @@
     "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start -p 3002",
-    "lint": "next lint"
+    "lint": "next lint",
+    "figma:images": "node scripts/fetch-landing-figma-images.mjs"
   },
   "dependencies": {
     "motion": "^11.15.0",

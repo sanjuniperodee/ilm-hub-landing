@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/Container";
+import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
 import { PhoneMock } from "@/components/ui/PhoneMock";
+import { landingImages } from "@/lib/landingImagePaths";
 import { AppleLogoWhite, GooglePlayLogo } from "@/components/ui/StoreLogos";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
@@ -14,56 +16,87 @@ export function CTASection() {
   const { fade, stagger: st, viewport } = useSectionReveal();
 
   return (
-    <section id="cta" className="pb-20 pt-6 sm:pb-24 md:pb-28" aria-labelledby="cta-heading">
+    <section id="cta" className="pb-16 pt-4 sm:pb-20 md:pb-24" aria-labelledby="cta-heading">
       <Container>
         <motion.div
           variants={st}
           initial="hidden"
           whileInView="show"
           viewport={viewport}
-          className="relative overflow-hidden rounded-[40px] shadow-[0_24px_60px_rgba(43,35,29,0.14)]"
+          className="relative overflow-hidden rounded-[40px] shadow-[0_20px_50px_rgba(74,52,41,0.18)]"
         >
-          <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[#2f241c] via-[#4a2f22] to-[#c45c18]">
+          {/* Figma: тёплый коричнево‑янтарный градиент без тяжёлого «затемнения» слева */}
+          <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-r from-[#3d2b22] via-[#5c3826] to-[#c76b2e]">
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
+              className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
               style={{ backgroundImage: noiseDataUrl }}
               aria-hidden
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-amber-400/15" aria-hidden />
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-amber-300/20"
+              aria-hidden
+            />
 
-            <div className="relative grid gap-10 px-6 py-10 sm:px-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-center lg:gap-10 lg:py-12">
-              <div className="mx-auto w-full max-w-[420px] text-center lg:mx-0 lg:text-left">
+            {/* Две колонки; по верху — компактнее по высоте, чем items-center */}
+            <div className="relative grid gap-7 px-5 py-7 sm:gap-8 sm:px-7 sm:py-8 lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-0 lg:px-9 lg:py-8 xl:gap-x-11 xl:px-11">
+              <div className="mx-auto flex w-full max-w-[480px] flex-col text-center lg:mx-0 lg:max-w-[min(100%,400px)] lg:text-left xl:max-w-[430px]">
                 <motion.h2
                   id="cta-heading"
                   variants={fade}
-                  className="text-balance text-[26px] font-bold leading-[1.2] tracking-[-0.02em] text-white sm:text-[28px] md:text-[30px]"
+                  className="text-balance text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-[28px] lg:text-[30px]"
                 >
                   Начни сегодня.
                   <br />
                   Это бесплатно
                 </motion.h2>
-                <motion.p variants={fade} className="mt-4 text-[15px] font-normal leading-[1.55] text-white/85">
-                  Скачай ILM Hub и начни уже сегодня,
-                  <br />
-                  в своём темпе и со своей целью
+                <motion.p
+                  variants={fade}
+                  className="mt-4 text-[15px] font-normal leading-[1.55] text-white/90 sm:text-base"
+                >
+                  Скачай ILM Hub и начни уже сегодня, в своём темпе и со своей целью
                 </motion.p>
 
-                <motion.div variants={fade} className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-                  <CtaStoreChip href="#" label="Скачать в App Store" store="apple" />
-                  <CtaStoreChip href="#" label="Скачать в Google Play" store="google" />
+                <motion.div
+                  variants={fade}
+                  className="mt-6 grid grid-cols-1 gap-2.5 sm:mx-auto sm:max-w-md sm:grid-cols-2 sm:gap-2.5 lg:mx-0 lg:max-w-md"
+                >
+                  <CtaStoreChip href="#" label="Скачать из Google Play" store="google" />
+                  <CtaStoreChip href="#" label="Загрузить в App Store" store="apple" />
                 </motion.div>
               </div>
 
-              <motion.div variants={fade} className="flex justify-center lg:justify-end">
-                <div className="relative flex min-h-[200px] w-full max-w-[min(100%,400px)] items-end justify-center pb-1 sm:min-h-[240px] sm:max-w-[440px]">
-                  <div className="relative z-[1] w-[32%] max-w-[142px] origin-bottom translate-y-3 -rotate-[11deg] scale-[0.96] sm:max-w-[156px]">
-                    <PhoneMock className="w-full" label="Скрин приложения" />
+              <motion.div variants={fade} className="flex w-full justify-center lg:justify-end lg:self-start">
+                {/*
+                  Центральный — вертикально впереди; боковые — сзади, наружу; без min-height — высота от контента.
+                */}
+                <div className="relative flex w-full max-w-[min(100%,320px)] items-end justify-center sm:max-w-[360px] lg:max-w-[min(100%,400px)] xl:max-w-[420px]">
+                  <div className="relative z-[10] w-[28%] max-w-[108px] shrink-0 origin-bottom translate-y-0.5 -rotate-[8deg] scale-[0.9] sm:max-w-[118px] lg:max-w-[126px]">
+                    <FigmaExportImage
+                      src={landingImages.ctaPhoneLeft}
+                      alt="Скрин приложения"
+                      className="aspect-[100/210] w-full"
+                      sizes="(max-width: 1024px) 28vw, 140px"
+                      fallback={<PhoneMock className="w-full" label="Скрин приложения" />}
+                    />
                   </div>
-                  <div className="relative z-[3] -mx-[12%] w-[40%] max-w-[186px] sm:max-w-[200px]">
-                    <PhoneMock className="w-full" label="Главный экран приложения" />
+                  <div className="relative z-[30] -mx-[10%] w-[44%] max-w-[168px] shrink-0 origin-center rotate-0 translate-y-0 sm:max-w-[188px] lg:-mx-[11%] lg:max-w-[200px]">
+                    <FigmaExportImage
+                      src={landingImages.ctaPhoneCenter}
+                      alt="Главный экран приложения"
+                      className="aspect-[125/261] w-full"
+                      imageClassName="object-contain object-center"
+                      sizes="(max-width: 1024px) 44vw, 200px"
+                      fallback={<PhoneMock className="w-full" label="Главный экран приложения" />}
+                    />
                   </div>
-                  <div className="relative z-[2] w-[32%] max-w-[142px] origin-bottom translate-y-3 rotate-[11deg] scale-[0.96] sm:max-w-[156px]">
-                    <PhoneMock className="w-full" label="Скрин приложения" />
+                  <div className="relative z-[10] w-[28%] max-w-[108px] shrink-0 origin-bottom translate-y-0.5 rotate-[8deg] scale-[0.9] sm:max-w-[118px] lg:max-w-[126px]">
+                    <FigmaExportImage
+                      src={landingImages.ctaPhoneRight}
+                      alt="Скрин приложения"
+                      className="aspect-[100/210] w-full"
+                      sizes="(max-width: 1024px) 28vw, 170px"
+                      fallback={<PhoneMock className="w-full" label="Скрин приложения" />}
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -76,17 +109,17 @@ export function CTASection() {
 }
 
 function CtaStoreChip({ href, label, store }: { href: string; label: string; store: "apple" | "google" }) {
-  const title = store === "apple" ? "App Store" : "Google Play";
   return (
     <Link
       href={href}
       aria-label={label}
-      className="inline-flex h-12 min-h-[48px] min-w-0 flex-1 items-center gap-3 rounded-[10px] border border-white/22 bg-black px-4 text-white transition hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40 sm:min-w-[178px] sm:flex-none"
+      title={label}
+      className="inline-flex min-h-[48px] w-full min-w-0 items-center gap-3 rounded-[10px] border border-white/25 bg-black px-3 py-2.5 text-white transition hover:bg-black/88 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40 sm:px-4"
     >
       <span className="flex h-8 w-8 shrink-0 items-center justify-center" aria-hidden>
         {store === "apple" ? <AppleLogoWhite className="h-[22px] w-[22px]" /> : <GooglePlayLogo className="h-[22px] w-[22px]" />}
       </span>
-      <span className="truncate text-[15px] font-semibold leading-none tracking-[-0.01em]">{title}</span>
+      <span className="min-w-0 text-left text-[13px] font-semibold leading-snug tracking-[-0.01em] sm:text-[14px]">{label}</span>
     </Link>
   );
 }

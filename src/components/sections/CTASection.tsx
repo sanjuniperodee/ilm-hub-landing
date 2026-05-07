@@ -39,7 +39,7 @@ export function CTASection() {
 
             {/* Две колонки; по верху — компактнее по высоте, чем items-center */}
             <div className="relative grid gap-7 px-5 py-7 sm:gap-8 sm:px-7 sm:py-8 lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-0 lg:px-9 lg:py-8 xl:gap-x-11 xl:px-11">
-              <div className="mx-auto flex w-full max-w-[480px] flex-col text-center lg:mx-0 lg:max-w-[min(100%,400px)] lg:text-left xl:max-w-[430px]">
+              <div className="mx-auto flex w-full max-w-[480px] flex-col text-center lg:mx-0 lg:max-w-[min(100%,420px)] lg:items-center xl:max-w-[440px]">
                 <motion.h2
                   id="cta-heading"
                   variants={fade}
@@ -58,7 +58,7 @@ export function CTASection() {
 
                 <motion.div
                   variants={fade}
-                  className="mt-6 grid grid-cols-1 gap-2.5 sm:mx-auto sm:max-w-md sm:grid-cols-2 sm:gap-2.5 lg:mx-0 lg:max-w-md"
+                  className="mt-6 mx-auto flex w-full max-w-[320px] flex-col gap-3"
                 >
                   <CtaStoreChip href="#" label="Скачать из Google Play" store="google" />
                   <CtaStoreChip href="#" label="Загрузить в App Store" store="apple" />
@@ -114,12 +114,12 @@ function CtaStoreChip({ href, label, store }: { href: string; label: string; sto
       href={href}
       aria-label={label}
       title={label}
-      className="inline-flex min-h-[48px] w-full min-w-0 items-center gap-3 rounded-[10px] border border-white/25 bg-black px-3 py-2.5 text-white transition hover:bg-black/88 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40 sm:px-4"
+      className="inline-flex h-14 w-full min-w-0 items-center justify-center gap-3 rounded-2xl bg-black px-5 text-white shadow-[0_8px_20px_rgba(0,0,0,0.25)] transition hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
     >
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center" aria-hidden>
-        {store === "apple" ? <AppleLogoWhite className="h-[22px] w-[22px]" /> : <GooglePlayLogo className="h-[22px] w-[22px]" />}
+      <span className="flex shrink-0 items-center justify-center" aria-hidden>
+        {store === "apple" ? <AppleLogoWhite className="h-6 w-6" /> : <GooglePlayLogo className="h-6 w-6" />}
       </span>
-      <span className="min-w-0 text-left text-[13px] font-semibold leading-snug tracking-[-0.01em] sm:text-[14px]">{label}</span>
+      <span className="min-w-0 text-center text-[15px] font-semibold leading-snug tracking-[-0.01em]">{label}</span>
     </Link>
   );
 }

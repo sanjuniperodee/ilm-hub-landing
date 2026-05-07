@@ -43,7 +43,7 @@ export function InsideSection() {
         <ContentNarrow>
           <h2
             id="inside-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[30px]"
+            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
           >
             Что внутри ILM Hub
           </h2>

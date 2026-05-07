@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { HeroDevicePlaceholders } from "@/components/ui/HeroDevicePlaceholders";
-import { AppleLogoMono, GooglePlayLogo } from "@/components/ui/StoreLogos";
+import { AppleLogoWhite, GooglePlayLogo } from "@/components/ui/StoreLogos";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 
 const chips = ["Общение", "Путешествия", "Бизнес", "Культура", "Понимать молитвы", "Читать Коран"] as const;
@@ -121,12 +121,16 @@ function HeroStorePill({ href, label, store }: { href: string; label: string; st
     <Link
       href={href}
       aria-label={label}
-      className="inline-flex h-12 min-h-[48px] w-full flex-1 items-center gap-3 rounded-full border border-[#d4cdc4] bg-white px-4 text-ink transition hover:border-[#c4bbb0] hover:bg-[#faf8f5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25 sm:w-auto sm:min-w-[168px]"
+      className="inline-flex h-14 min-h-[56px] w-full flex-1 items-center justify-center gap-3 rounded-2xl bg-ink px-5 text-white shadow-[0_8px_20px_rgba(26,26,26,0.18)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/35 sm:w-auto sm:min-w-[180px]"
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center text-ink" aria-hidden>
-        {store === "apple" ? <AppleLogoMono className="h-[26px] w-[26px]" /> : <GooglePlayLogo className="h-[26px] w-[26px]" />}
+      <span className="flex shrink-0 items-center justify-center" aria-hidden>
+        {store === "apple" ? (
+          <AppleLogoWhite className="h-7 w-7" />
+        ) : (
+          <GooglePlayLogo className="h-6 w-6" />
+        )}
       </span>
-      <span className="truncate text-[15px] font-semibold leading-none tracking-[-0.01em]">{title}</span>
+      <span className="truncate text-[17px] font-semibold leading-none tracking-[-0.01em]">{title}</span>
     </Link>
   );
 }

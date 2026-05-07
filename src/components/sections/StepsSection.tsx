@@ -35,7 +35,7 @@ export function StepsSection() {
         <ContentNarrow>
           <h2
             id="steps-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[30px]"
+            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
           >
             Три шага до первых слов
           </h2>

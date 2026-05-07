@@ -26,16 +26,6 @@ const cards = [
     body: "Слова закрепляются в долгосрочной памяти — приложение напомнит в нужный момент.",
     icon: "🔁",
   },
-  {
-    title: "Встроенный словарь",
-    body: "Поиск, перевод, карточки для повторения. Слова из уроков сразу попадают в твой личный словарь.",
-    icon: "📚",
-  },
-  {
-    title: "Чистое арабское аудио",
-    body: "Тренируй восприятие на слух с первого урока — классический литературный арабский в каждом уроке.",
-    icon: "🎧",
-  },
 ] as const;
 
 export function WhySection() {
@@ -47,7 +37,7 @@ export function WhySection() {
         <ContentNarrow>
           <h2
             id="why-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[30px]"
+            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
           >
             Почему ILM Hub
           </h2>
@@ -60,7 +50,7 @@ export function WhySection() {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
             {cards.map((c) => (
               <motion.article

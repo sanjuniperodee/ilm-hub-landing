@@ -34,20 +34,20 @@ export function HowItWorksSection() {
         <ContentNarrow>
           <h2
             id="how-heading"
-            className="text-center text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[30px]"
+            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
           >
             Как проходит обучение в ILM Hub
           </h2>
 
-          {/* Figma: 6 телефонов вплотную, без лишней подложки за корпусом */}
-          <div className="mt-10 flex justify-center gap-1 overflow-x-auto px-1 pb-2 sm:gap-1.5 md:gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {howScreenImages.map((src, i) => (
-              <div key={src} className="w-[118px] shrink-0 sm:w-[136px] md:w-[152px] lg:w-[158px]">
+          {/* Figma: 5 телефонов вплотную, без лишней подложки за корпусом */}
+          <div className="mt-10 flex justify-center gap-2 overflow-x-auto px-1 pb-2 sm:gap-3 md:gap-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {howScreenImages.slice(0, 5).map((src, i) => (
+              <div key={src} className="w-[140px] shrink-0 sm:w-[160px] md:w-[180px] lg:w-[190px]">
                 <FigmaExportImage
                   src={src}
                   alt={`Экран приложения ${i + 1}`}
                   className="aspect-[202/420] w-full"
-                  sizes="(max-width: 768px) 24vw, 160px"
+                  sizes="(max-width: 768px) 28vw, 190px"
                   fallback={<PhoneMock variant="how" className="w-full" label={`Экран приложения ${i + 1}`} />}
                 />
               </div>

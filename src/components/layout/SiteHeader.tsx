@@ -1,24 +1,27 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
+import { landingIcons } from "@/lib/landingImagePaths";
 
+/** Фиксированная шапка: 52px (mobile, отступы 12) / 60px (desktop, отступы 60), нижняя граница #efe6da. */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-canvas/85 backdrop-blur-md">
-      <Container as="div" className="flex h-[60px] items-center justify-between">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-canvas">
+      <div className="flex h-[52px] items-center justify-between px-3 desk:h-[60px] desk:px-[60px]">
         <Link
           href="/"
-          className="text-[22px] font-bold lowercase leading-none tracking-tight text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25"
           aria-label="ILM Hub — на главную"
+          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/40"
         >
-          ilm
+          <Image src={landingIcons.logo} alt="ilm" width={42} height={22} priority />
         </Link>
+        {/* "/#cta", а не "#cta": шапка используется и на юридических страницах. */}
         <Link
-          href="#cta"
-          className="text-sm font-normal text-ink underline decoration-ink/35 underline-offset-[5px] transition hover:decoration-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25"
+          href="/#cta"
+          className="text-[14px] leading-5 text-ink underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/40"
         >
           Скачать бесплатно
         </Link>
-      </Container>
+      </div>
     </header>
   );
 }

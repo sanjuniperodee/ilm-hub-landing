@@ -1,136 +1,87 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
-import { Container } from "@/components/ui/Container";
-import { HeroDevicePlaceholders } from "@/components/ui/HeroDevicePlaceholders";
-import { AppleLogoWhite, GooglePlayLogo } from "@/components/ui/StoreLogos";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { StoreOutlineButtons } from "@/components/ui/StoreButtons";
+import { landingImages } from "@/lib/landingImagePaths";
 
 const chips = ["Общение", "Путешествия", "Бизнес", "Культура", "Понимать молитвы", "Читать Коран"] as const;
 
+/**
+ * Первый экран. Mobile: заголовок → телефоны → чипы → кнопка → сторы → «Сделано в Казахстане» (gap 36).
+ * Desktop: левая колонка 420 (текст, кнопки) и правая 440 (телефоны, чипы), выровнены по центру.
+ * Обёртки с `contents` на мобильном отдают детей в общий flex, чтобы порядок совпал с макетом.
+ */
 export function HeroSection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
-
   return (
-    <section className="relative overflow-hidden pb-16 pt-8 sm:pb-[72px] sm:pt-10 md:pt-12" aria-labelledby="hero-heading">
-      <Container>
-        <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-start lg:gap-x-24 lg:gap-y-0 xl:gap-x-28">
-          <motion.h1
-            id="hero-heading"
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="max-w-[420px] text-balance lg:col-start-1 lg:row-start-1"
-          >
-            <motion.span
-              variants={fade}
-              className="block text-[40px] font-bold leading-[1.06] tracking-[-0.03em] text-ink sm:text-[44px] md:text-[48px]"
-            >
-              Арабский —
-            </motion.span>
-            <motion.span
-              variants={fade}
-              className="mt-2 block font-display text-[40px] font-normal italic leading-[1.06] tracking-[-0.02em] text-hero-accent sm:text-[44px] md:text-[48px]"
-            >
-              проще, чем
-            </motion.span>
-            <motion.span
-              variants={fade}
-              className="mt-2 block text-[40px] font-bold leading-[1.06] tracking-[-0.03em] text-ink sm:text-[44px] md:text-[48px]"
-            >
-              ты думаешь.
-            </motion.span>
-          </motion.h1>
-
-          <motion.p
-            variants={fade}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="max-w-[420px] text-[16px] font-normal leading-[1.5] text-hero-subtle lg:col-start-1 lg:row-start-2 lg:pt-6"
-          >
-            5-10 минут в день. Никакого сложного старта. Приложение ведет тебя шаг за шагом с нуля
-          </motion.p>
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            variants={{
-              hidden: { opacity: 0, y: 14 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
-              },
-            }}
-            className="lg:col-start-2 lg:row-start-1 lg:row-span-3 lg:flex lg:flex-col lg:items-end lg:pb-1"
-          >
-            <HeroDevicePlaceholders />
-            <ul className="mt-8 flex w-full max-w-[440px] flex-wrap justify-center gap-2 sm:gap-2.5 lg:ml-auto lg:mr-0 lg:justify-end">
-              {chips.map((label) => (
-                <li key={label}>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-line bg-canvas px-3 py-[7px] text-[12px] font-normal leading-none tracking-tight text-ink/90">
-                    <span className="text-[10px] text-muted" aria-hidden>
-                      •
-                    </span>
-                    {label}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="flex max-w-[420px] flex-col gap-5 lg:col-start-1 lg:row-start-3 lg:pt-2"
-          >
-            <motion.div variants={fade}>
-              <Link
-                href="#cta"
-                className="flex h-14 w-full items-center justify-center rounded-full bg-brand text-[16px] font-semibold leading-none text-white shadow-[0_14px_34px_rgba(26,26,26,0.2)] transition hover:brightness-[1.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/35 sm:w-auto sm:min-w-[260px] sm:px-10"
-              >
-                Начать бесплатно
-              </Link>
-            </motion.div>
-            <motion.div variants={fade} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-              <HeroStorePill href="#" label="Скачать в App Store" store="apple" />
-              <HeroStorePill href="#" label="Скачать в Google Play" store="google" />
-            </motion.div>
-            <motion.p variants={fade} className="text-[13px] font-normal leading-normal text-muted">
-              <span aria-hidden className="mr-1.5">
-                🇰🇿
-              </span>
-              Сделано в Казахстане
-            </motion.p>
-          </motion.div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function HeroStorePill({ href, label, store }: { href: string; label: string; store: "apple" | "google" }) {
-  const title = store === "apple" ? "App Store" : "Google Play";
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      className="inline-flex h-14 min-h-[56px] w-full flex-1 items-center justify-center gap-3 rounded-2xl bg-ink px-5 text-white shadow-[0_8px_20px_rgba(26,26,26,0.18)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/35 sm:w-auto sm:min-w-[180px]"
+    <section
+      aria-labelledby="hero-heading"
+      className="flex flex-col gap-9 py-10 desk:flex-row desk:items-center desk:justify-between desk:gap-[60px] desk:pb-0 desk:pt-[60px]"
     >
-      <span className="flex shrink-0 items-center justify-center" aria-hidden>
-        {store === "apple" ? (
-          <AppleLogoWhite className="h-7 w-7" />
-        ) : (
-          <GooglePlayLogo className="h-6 w-6" />
-        )}
-      </span>
-      <span className="truncate text-[17px] font-semibold leading-none tracking-[-0.01em]">{title}</span>
-    </Link>
+      <div className="contents desk:flex desk:w-[420px] desk:shrink-0 desk:flex-col desk:gap-9">
+        <div className="order-1 flex flex-col gap-4 desk:order-none">
+          <h1
+            id="hero-heading"
+            className="text-[36px] font-semibold leading-[40px] tracking-[-0.03em] text-ink desk:text-[44px] desk:leading-[48px]"
+          >
+            Арабский –<br />
+            <span className="font-alt font-medium italic text-accent">проще, чем</span>
+            <br />
+            ты думаешь.
+          </h1>
+          <p className="text-[14px] leading-5 text-muted desk:text-[16px] desk:leading-6">
+            5-10 минут в день. Никакого сложного старта. Приложение ведет тебя шаг за шагом с нуля
+          </p>
+        </div>
+
+        <div className="contents desk:flex desk:flex-col desk:gap-4">
+          <Link
+            href="#cta"
+            className="order-4 flex h-12 items-center justify-center rounded-2xl bg-brand px-5 text-[16px] font-medium leading-5 text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/40"
+          >
+            Начать бесплатно
+          </Link>
+          <StoreOutlineButtons className="order-5" />
+        </div>
+
+        <p className="order-6 text-center text-[14px] leading-5 text-muted desk:order-none desk:text-left">
+          🇰🇿 Сделано в Казахстане
+        </p>
+      </div>
+
+      <div className="contents desk:flex desk:w-[440px] desk:shrink-0 desk:flex-col desk:items-center desk:gap-9">
+        <div className="order-2 shrink-0">
+          <Image
+            src={landingImages.heroDevicesMobile}
+            alt="Экраны приложения ILM Hub: главная с уровнями и упражнение"
+            width={351}
+            height={357}
+            priority
+            className="desk:hidden"
+          />
+          <Image
+            src={landingImages.heroDevices}
+            alt="Экраны приложения ILM Hub: главная с уровнями и упражнение"
+            width={350}
+            height={357}
+            priority
+            className="hidden desk:block"
+          />
+        </div>
+        {/* В Figma ряд 397px, 4 чипа = 399px → перенос 3+3. Браузер меряет текст чуть уже, поэтому 385px:
+            ряды центрируются, их положение не меняется, а перенос остаётся 3+3. */}
+        <ul className="order-3 flex flex-wrap gap-2 desk:w-[385px] desk:justify-center">
+          {chips.map((label) => (
+            <li
+              key={label}
+              className="flex items-center gap-1 rounded-xl bg-chip px-2 py-1 text-[12px] leading-4 text-muted"
+            >
+              <span aria-hidden className="w-3 text-center">
+                ・
+              </span>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }

@@ -1,63 +1,55 @@
-"use client";
-
-import { motion } from "motion/react";
-import { Container, ContentNarrow } from "@/components/ui/Container";
-import { StepRosetteBadge } from "@/components/ui/ScallopedRosette";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+import Image from "next/image";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { landingIcons } from "@/lib/landingImagePaths";
 
 const steps = [
   {
-    n: "1",
     title: "Выбери цель",
     body: "Общение, путешествия, бизнес или понимание текстов — приложение подстроит программу под тебя. Займёт 2 минуты.",
-    active: true,
   },
   {
-    n: "2",
     title: "Учись в своём темпе",
-    body: "Короткие уроки по 5, 10 или 30 минут. Можно дома, в дороге, офлайн. Система сама ведёт тебя шаг за шагом.",
-    active: false,
+    body: "Короткие уроки по 5, 10 или 30 минут. Можно дома или в дороге. Система сама ведёт тебя шаг за шагом.",
   },
   {
-    n: "3",
     title: "Закрепляй и повторяй",
-    body: "Каждый урок завершается практикой. Слова и темы закрепляются через интервальное повторение — ничего не забывается.",
-    active: false,
+    body: "Каждый урок завершается практикой. Слова закрепляются карточками и квизами, а напоминания помогают не терять темп.",
   },
 ] as const;
 
 export function StepsSection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
-
   return (
-    <section className="py-16 sm:py-20 md:py-[88px]" aria-labelledby="steps-heading">
-      <Container>
-        <ContentNarrow>
-          <h2
-            id="steps-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
-          >
-            Три шага до первых слов
-          </h2>
-          <motion.ul
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8 lg:gap-10"
-          >
-            {steps.map((s) => (
-              <motion.li key={s.n} variants={fade} className="flex items-start gap-4">
-                <StepRosetteBadge variant={s.active ? "active" : "muted"}>{s.n}</StepRosetteBadge>
-                <div className="min-w-0 pt-0.5">
-                  <h3 className="text-lg font-bold leading-snug tracking-[-0.015em] text-ink">{s.title}</h3>
-                  <p className="mt-2 text-[15px] font-normal leading-[1.5] text-muted">{s.body}</p>
-                </div>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </ContentNarrow>
-      </Container>
+    <section aria-labelledby="steps-heading" className="flex flex-col gap-6 desk:gap-7 desk:py-10">
+      <SectionHeading id="steps-heading">Три шага до первых слов</SectionHeading>
+      <ol className="flex flex-col gap-2 desk:flex-row desk:gap-9">
+        {steps.map((step, i) => {
+          const active = i === 0;
+          return (
+            <li key={step.title} className="flex flex-1 gap-4 py-4">
+              <span className="relative flex size-14 shrink-0 items-center justify-center">
+                <Image
+                  src={active ? landingIcons.stepBadgeActive : landingIcons.stepBadge}
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="absolute inset-0"
+                />
+                <span
+                  className={`relative text-[16px] font-semibold leading-5 ${active ? "text-white" : "text-muted"}`}
+                >
+                  {i + 1}
+                </span>
+              </span>
+              <div className="flex flex-1 flex-col gap-2">
+                <h3 className="text-[16px] font-semibold leading-5 text-ink desk:text-[18px] desk:leading-[22px]">
+                  {step.title}
+                </h3>
+                <p className="text-[14px] leading-5 text-ink">{step.body}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
     </section>
   );
 }

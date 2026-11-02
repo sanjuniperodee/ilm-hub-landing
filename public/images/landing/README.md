@@ -13,6 +13,4 @@ npm run figma:images            # из каталога landing/
 
 Если все строки «Нет URL» — скрипт завершится с кодом 1 и выведет диагностику по первой ноде: чаще всего неверный `FIGMA_FILE_KEY` или id из другого файла. `FIGMA_DEBUG=1` — полный дамп `images`.
 
-Скрипт: `scripts/fetch-landing-figma-images.mjs` (узлы согласованы с TalkToFigma: hero `220:3609`, how `220:3692`…`3697`, onboarding `220:3789`, CTA `220:3825`…`3827`).
-
-После загрузки страница покажет реальные PNG; если файла нет — остаётся CSS-плейсхолдер (`onError`).
+Скрипт: `scripts/fetch-landing-figma-images.mjs` (узлы секции `Home` макета «ILM Hub Landing»: hero `220:3609` / mobile `220:4347`, how `220:3692`…`3697`, onboarding `220:3789`, CTA `220:3824` / mobile `220:4582`). SVG-иконки в `icons/` и фон CTA `cta-bg.png` (оригинал заливки) выгружены из того же макета.

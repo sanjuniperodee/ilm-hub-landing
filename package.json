@@ -10,7 +10,6 @@
     "figma:images": "node scripts/fetch-landing-figma-images.mjs"
   },
   "dependencies": {
-    "motion": "^11.15.0",
     "next": "15.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

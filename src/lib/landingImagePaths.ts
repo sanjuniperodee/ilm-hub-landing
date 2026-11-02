@@ -1,23 +1,29 @@
-/** Статические пути к PNG из Figma (кладутся в public через scripts/fetch-landing-figma-images.mjs) */
+/** Ассеты из Figma «ILM Hub Landing» (экспорт узлов @2x / SVG), лежат в public/images/landing */
+const base = "/images/landing";
+
 export const landingImages = {
-  heroDevices: "/images/landing/hero-devices.png",
-  how01: "/images/landing/how-01.png",
-  how02: "/images/landing/how-02.png",
-  how03: "/images/landing/how-03.png",
-  how04: "/images/landing/how-04.png",
-  how05: "/images/landing/how-05.png",
-  how06: "/images/landing/how-06.png",
-  onboardingPhone: "/images/landing/onboarding-phone.png",
-  ctaPhoneLeft: "/images/landing/cta-phone-left.png",
-  ctaPhoneCenter: "/images/landing/cta-phone-center.png",
-  ctaPhoneRight: "/images/landing/cta-phone-right.png",
+  heroDevices: `${base}/hero-devices.png`,
+  heroDevicesMobile: `${base}/hero-devices-mobile.png`,
+  onboardingPhone: `${base}/onboarding-phone.png`,
+  ctaBackground: `${base}/cta-bg.png`,
+  ctaPhonesDesktop: `${base}/cta-phones-desktop.png`,
+  ctaPhonesMobile: `${base}/cta-phones-mobile.png`,
 } as const;
 
-export const howScreenImages = [
-  landingImages.how01,
-  landingImages.how02,
-  landingImages.how03,
-  landingImages.how04,
-  landingImages.how05,
-  landingImages.how06,
-] as const;
+export const howScreenImages = [1, 2, 3, 4, 5, 6].map((n) => `${base}/how-0${n}.png`);
+
+export const landingIcons = {
+  logo: `${base}/icons/logo-ilm.svg`,
+  stepBadgeActive: `${base}/icons/step-badge-active.svg`,
+  stepBadge: `${base}/icons/step-badge.svg`,
+  whyBadge: `${base}/icons/why-badge.svg`,
+  alarm: `${base}/icons/icon-alarm.svg`,
+  chevronUp: `${base}/icons/icon-chevron-up.svg`,
+  chevronDown: `${base}/icons/icon-chevron-down.svg`,
+  appleLogo: `${base}/icons/apple-logo-black.svg`,
+  appStoreWordmark: `${base}/icons/app-store-wordmark-black.svg`,
+  googlePlayLogo: `${base}/icons/google-play-logo.svg`,
+  googlePlayWordmark: `${base}/icons/google-play-wordmark-black.svg`,
+  badgeAppStore: `${base}/icons/badge-app-store.svg`,
+  badgeGooglePlay: `${base}/icons/badge-google-play.svg`,
+} as const;

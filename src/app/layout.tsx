@@ -1,26 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Playfair_Display } from "next/font/google";
+import { Montserrat, Montserrat_Alternates } from "next/font/google";
+import { COMPANY, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { storeLinks } from "@/lib/storeLinks";
 import "./globals.css";
 
 const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
   variable: "--font-montserrat",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
-const playfair = Playfair_Display({
+/** Акцент «проще, чем» в заголовке героя — Montserrat Alternates Medium Italic */
+const montserratAlternates = Montserrat_Alternates({
   subsets: ["latin", "cyrillic"],
   style: ["italic"],
-  variable: "--font-display",
+  variable: "--font-montserrat-alternates",
   display: "swap",
-  weight: ["400", "600", "700"],
+  weight: ["500"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ilmhub.app";
-
 const SEO_DESCRIPTION =
-  "ILM Hub — приложение для изучения арабского языка с нуля. Короткие уроки по 5–10 минут, классический литературный арабский, курсы Махрадж, A1–A2, Таджвид, чтение Корана и офлайн-режим. Скачай бесплатно в App Store и Google Play.";
+  "ILM Hub — приложение для изучения арабского языка с нуля. Короткие уроки по 5–10 минут, классический литературный арабский, курсы Махрадж, A1–A2, Таджвид, словарь с карточками, Коран, 99 имён Аллаха, Хадж и Умра. Скачай бесплатно для iPhone и Android.";
 
 const SEO_KEYWORDS = [
   "арабский язык",
@@ -42,8 +43,6 @@ const SEO_KEYWORDS = [
   "арабский A2",
   "классический арабский",
   "фусха",
-  "интервальное повторение арабский",
-  "арабский офлайн",
   "арабский для путешествий",
   "арабский для бизнеса",
 ];
@@ -79,8 +78,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/landing/hero-devices.png",
-        width: 1200,
-        height: 630,
+        width: 700,
+        height: 714,
         alt: "ILM Hub — приложение для изучения арабского языка",
       },
     ],
@@ -102,10 +101,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  // Иконки — файловая конвенция Next.js: src/app/favicon.ico, icon.png, apple-icon.png (из иконки мобильного приложения).
   formatDetection: {
     email: false,
     telephone: false,
@@ -120,8 +116,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fdf8f3" },
-    { media: "(prefers-color-scheme: dark)", color: "#fdf8f3" },
+    { media: "(prefers-color-scheme: light)", color: "#fff9f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#fff9f1" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -133,17 +129,18 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "ILM Hub",
+  legalName: COMPANY.name,
+  taxID: COMPANY.bin,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/landing/hero-devices.png`,
+  logo: `${SITE_URL}/icon.png`,
+  email: CONTACT_EMAIL,
   description: SEO_DESCRIPTION,
-  foundingLocation: {
-    "@type": "Place",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "KZ",
-    },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ул. Сыганак, д. 39/1",
+    addressLocality: "Астана",
+    addressCountry: COMPANY.country,
   },
-  sameAs: [],
 };
 
 const websiteJsonLd = {
@@ -164,16 +161,16 @@ const mobileAppJsonLd = {
   applicationCategory: "EducationalApplication",
   description: SEO_DESCRIPTION,
   inLanguage: ["ru", "ar"],
+  // Бесплатная загрузка; ILM Premium — подписка через App Store / Google Play. Рейтинг не указываем, пока нет реальных отзывов в сторах.
   offers: {
     "@type": "Offer",
     price: "0",
-    priceCurrency: "USD",
+    priceCurrency: "KZT",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    ratingCount: "120",
-  },
+  ...(() => {
+    const urls = [storeLinks.appStore, storeLinks.googlePlay].filter((u): u is string => Boolean(u));
+    return urls.length ? { downloadUrl: urls, installUrl: urls } : {};
+  })(),
 };
 
 const faqJsonLd = {
@@ -217,7 +214,7 @@ const faqJsonLd = {
       name: "На каких устройствах работает ILM Hub?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "iOS (iPhone) и Android. Уроки можно загрузить заранее и проходить офлайн — без интернета, в дороге или самолёте.",
+        text: "iOS (iPhone) и Android. Прогресс сохраняется в аккаунте — можно продолжить с того же места на другом устройстве.",
       },
     },
   ],
@@ -225,7 +222,7 @@ const faqJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru" className={`${montserrat.variable} ${playfair.variable} bg-canvas`}>
+    <html lang="ru" className={`${montserrat.variable} ${montserratAlternates.variable} bg-canvas`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

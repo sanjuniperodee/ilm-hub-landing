@@ -1,34 +1,37 @@
 import Link from "next/link";
-import { Container, ContentNarrow } from "@/components/ui/Container";
+import { COMPANY, CONTACT_EMAIL } from "@/lib/site";
+
+const links = [
+  { href: "/privacy", label: "Политика конфиденциальности" },
+  { href: "/terms", label: "Условия использования" },
+  { href: "/delete-account", label: "Удаление аккаунта" },
+  { href: `mailto:${CONTACT_EMAIL}`, label: "Поддержка" },
+] as const;
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line bg-canvas pb-10 pt-9">
-      <Container>
-        <ContentNarrow className="flex flex-col gap-4 text-xs leading-normal text-muted sm:flex-row sm:items-center sm:justify-between">
+    <footer className="px-3 pb-10 desk:px-8">
+      <div className="mx-auto flex w-full max-w-content flex-col gap-8 text-[12px] leading-4 text-muted desk:flex-row desk:justify-between">
+        <div className="flex flex-col gap-2 desk:max-w-[340px]">
           <p>© {new Date().getFullYear()} ILM Hub. Все права защищены.</p>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label="Юридическая информация">
+          <p>
+            {COMPANY.name}, БИН {COMPANY.bin}
+            <br />
+            {COMPANY.address}
+          </p>
+        </div>
+        <nav aria-label="Юридическая информация" className="flex flex-col gap-4 desk:flex-row desk:gap-10">
+          {links.map(({ href, label }) => (
             <Link
-              className="underline decoration-ink/20 underline-offset-4 transition hover:text-ink hover:decoration-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25"
-              href="/privacy"
+              key={href}
+              href={href}
+              className="whitespace-nowrap transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/40"
             >
-              Политика конфиденциальности
+              {label}
             </Link>
-            <Link
-              className="underline decoration-ink/20 underline-offset-4 transition hover:text-ink hover:decoration-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25"
-              href="/terms"
-            >
-              Условия использования
-            </Link>
-            <Link
-              className="underline decoration-ink/20 underline-offset-4 transition hover:text-ink hover:decoration-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/25"
-              href="mailto:support@ilmhub.app"
-            >
-              Поддержка
-            </Link>
-          </nav>
-        </ContentNarrow>
-      </Container>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 }

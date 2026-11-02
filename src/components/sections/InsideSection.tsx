@@ -1,119 +1,96 @@
-"use client";
-
-import { motion } from "motion/react";
-import { Container, ContentNarrow } from "@/components/ui/Container";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+import Image from "next/image";
+import { SectionHeading, SectionLead } from "@/components/ui/SectionHeading";
+import { landingIcons } from "@/lib/landingImagePaths";
 
 const courses = [
   {
-    badge: { text: "Произношение", className: "bg-sage text-sage-ink" },
+    badge: "Произношение",
+    badgeClass: "bg-sage text-sage-ink",
     ar: "مخرج",
     title: "Махрадж",
     body: "Точки артикуляции каждого арабского звука. Правильное произношение с самого начала, без плохих привычек.",
-    meta: "5–10 мин/урок",
+    meta: "5-10 мин/урок",
   },
   {
-    badge: { text: "Начальный курс", className: "bg-honey text-honey-ink" },
+    badge: "Начальный курс",
+    badgeClass: "bg-honey text-honey-ink",
     ar: "المستوى الأول",
     title: "Курс A1–A2",
     body: "Алфавит, базовые слова и конструкции, первые диалоги. Структурное понимание языка с нуля.",
-    meta: "10–15 мин/урок",
+    meta: "10-15 мин/урок",
   },
   {
-    badge: { text: "Чтение", className: "bg-peach text-peach-ink" },
+    badge: "Чтение",
+    badgeClass: "bg-peach text-accent",
     ar: "تجويد",
     title: "Таджвид",
     body: "Правила красивого и правильного чтения арабского текста. Для тех, кто хочет читать грамотно и мелодично.",
-    meta: "10–20 мин/урок",
+    meta: "10-20 мин/урок",
   },
 ] as const;
 
 const extras = [
-  { icon: "📖", title: "Коран", subtitle: "Текст и аудио" },
-  { icon: "✨", title: "99 имён Аллаха", subtitle: "Полный список" },
-  { icon: "🕌", title: "Хадж и Умра", subtitle: "Шаги и чек-листы" },
+  { emoji: "📖", title: "Коран", subtitle: "Текст и аудио" },
+  { emoji: "✨", title: "99 имён Аллаха", subtitle: "Полный список" },
+  { emoji: "🕌", title: "Хадж и Умра", subtitle: "Шаги и чек-листы" },
 ] as const;
 
+/** Белая карточка: обводка 1px #efe6da (inside в Figma → padding 16 − 1), r16, мягкая тень. */
+const card = "flex flex-col gap-3 rounded-2xl border border-line bg-white p-[15px] shadow-card";
+
 export function InsideSection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
-
   return (
-    <section className="py-16 sm:py-20 md:py-[88px]" aria-labelledby="inside-heading">
-      <Container>
-        <ContentNarrow>
-          <h2
-            id="inside-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
-          >
-            Что внутри ILM Hub
-          </h2>
-          <p className="mt-3 max-w-[820px] text-[15px] font-normal leading-[1.5] text-muted">
-            Структурированные курсы от нуля до уверенного чтения — каждый уровень открывает следующий.
-          </p>
+    <section aria-labelledby="inside-heading" className="flex flex-col gap-6 desk:gap-10">
+      <div className="flex flex-col gap-3">
+        <SectionHeading id="inside-heading">Что внутри ILM Hub</SectionHeading>
+        <SectionLead>
+          Структурированные курсы от нуля до уверенного чтения — каждый уровень открывает следующий.
+        </SectionLead>
+      </div>
 
-          <motion.div
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-10 grid gap-5 md:grid-cols-3 md:gap-5"
-          >
-            {courses.map((c) => (
-              <motion.article
-                key={c.title}
-                variants={fade}
-                className="flex flex-col rounded-[28px] border-2 border-line bg-white p-5 shadow-[0_1px_0_rgba(26,26,26,0.04)] sm:p-6"
+      <div className="flex flex-col gap-3 desk:gap-5">
+        <ul className="flex flex-col gap-3 desk:flex-row">
+          {courses.map((c) => (
+            <li key={c.title} className={`${card} flex-1`}>
+              <span
+                className={`self-start rounded-3xl px-1.5 pb-[3px] pt-0.5 text-[11px] font-medium leading-[14px] ${c.badgeClass}`}
               >
-                <span
-                  className={`inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-semibold leading-none ${c.badge.className}`}
-                >
-                  {c.badge.text}
-                </span>
-                <div className="mt-4 flex flex-1 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-bold leading-snug text-ink">{c.title}</h3>
-                    <p className="mt-2 text-[13px] font-normal leading-[1.45] text-muted sm:text-sm">{c.body}</p>
-                  </div>
-                  <p className="shrink-0 text-right text-[24px] font-semibold leading-tight tracking-[-0.02em] text-stone sm:text-[26px]">
-                    {c.ar}
-                  </p>
-                </div>
-                <div className="mt-5 flex items-center gap-2 border-t border-line pt-4 text-[12px] font-normal text-muted">
-                  <span aria-hidden>⏱</span>
-                  {c.meta}
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
+                {c.badge}
+              </span>
+              <p lang="ar" dir="rtl" className="text-right text-[22px] font-semibold leading-7 text-stone">
+                {c.ar}
+              </p>
+              <div className="flex flex-col gap-1.5">
+                <h3 className="text-[16px] font-semibold leading-5 text-ink">{c.title}</h3>
+                <p className="text-[12px] leading-4 text-muted desk:line-clamp-3 desk:h-12">{c.body}</p>
+              </div>
+              {/* Линия в Figma не занимает высоты: 12 + линия + 12, поэтому −1px компенсирует border. */}
+              <hr className="-mb-px border-line" />
+              <div className="flex items-center gap-1 text-[12px] leading-4 text-muted">
+                <Image src={landingIcons.alarm} alt="" width={16} height={16} />
+                {c.meta}
+              </div>
+            </li>
+          ))}
+        </ul>
 
-          <motion.div
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-6 rounded-[28px] border-2 border-line bg-white p-5 shadow-[0_1px_0_rgba(26,26,26,0.04)] sm:p-6"
-          >
-            <p className="text-[13px] font-semibold uppercase tracking-wide text-stone">Также в приложении</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3 sm:gap-4">
-              {extras.map((e) => (
-                <motion.div
-                  key={e.title}
-                  variants={fade}
-                  className="flex gap-3 rounded-2xl border border-line bg-chip p-4"
-                >
-                  <div className="text-xl leading-none" aria-hidden>
-                    {e.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold leading-snug text-ink">{e.title}</p>
-                    <p className="mt-0.5 text-xs font-normal leading-normal text-muted">{e.subtitle}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </ContentNarrow>
-      </Container>
+        <div className={card}>
+          <h3 className="text-[14px] font-semibold leading-[18px] text-stone">Также в приложении</h3>
+          <ul className="flex flex-col gap-2 desk:flex-row">
+            {extras.map((e) => (
+              <li key={e.title} className="flex flex-1 items-center gap-4 rounded-xl bg-chip px-4 py-3">
+                <span aria-hidden className="text-[22px] font-semibold leading-7">
+                  {e.emoji}
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[14px] font-semibold leading-[18px] text-ink">{e.title}</p>
+                  <p className="text-[12px] leading-4 text-muted">{e.subtitle}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 }

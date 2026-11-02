@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
-import { Container, ContentNarrow } from "@/components/ui/Container";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+import Image from "next/image";
+import { useId, useState } from "react";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { landingIcons } from "@/lib/landingImagePaths";
 
 const faq = [
   {
@@ -19,7 +20,7 @@ const faq = [
   },
   {
     q: "Есть ли словарь и карточки для повторения слов?",
-    a: "Да. В приложении есть словарь с поиском и переводом, карточки слов с интервальным повторением и формирование личного словаря на основе твоего прогресса.",
+    a: "Да. В приложении есть словарь с поиском и переводом, избранное, карточки и квизы для повторения слов и своя колода «Мои слова», которую ты собираешь из словаря.",
   },
   {
     q: "Сколько времени нужно в день?",
@@ -27,7 +28,7 @@ const faq = [
   },
   {
     q: "На каких устройствах работает ILM Hub?",
-    a: "iOS (iPhone) и Android. Уроки можно загрузить заранее и проходить офлайн — без интернета, в дороге или самолёте.",
+    a: "iOS (iPhone) и Android. Прогресс сохраняется в аккаунте — можно продолжить с того же места на другом устройстве.",
   },
   {
     q: "Будут ли уровни выше A1–A2?",
@@ -39,57 +40,55 @@ const faq = [
   },
 ] as const;
 
-function ChevronIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg className={className} width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden>
-      <path
-        d="M5 7.5L10 12.5L15 7.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function FAQSection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
+  // В макете первый вопрос раскрыт; переключение — Smart Animate 300ms ease-out.
+  const [open, setOpen] = useState<number | null>(0);
+  const baseId = useId();
 
   return (
-    <section className="py-16 sm:py-20 md:py-[88px]" aria-labelledby="faq-heading">
-      <Container>
-        <ContentNarrow>
-          <h2
-            id="faq-heading"
-            className="text-center text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
-          >
-            Частые вопросы
-          </h2>
-
-          <motion.div
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-10 border-y border-line"
-          >
-            {faq.map((item) => (
-              <motion.div key={item.q} variants={fade} className="border-b border-line last:border-b-0">
-                <details className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
-                    <span className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-base">
-                      {item.q}
-                    </span>
-                    <ChevronIcon className="shrink-0 text-ink/55 transition-transform duration-200 group-open:rotate-180" />
-                  </summary>
-                  <p className="mt-3 max-w-[720px] pr-10 text-[15px] font-normal leading-[1.55] text-muted">{item.a}</p>
-                </details>
-              </motion.div>
-            ))}
-          </motion.div>
-        </ContentNarrow>
-      </Container>
+    <section aria-labelledby="faq-heading" className="flex flex-col gap-6 desk:items-center desk:gap-7">
+      <SectionHeading id="faq-heading" className="desk:w-[560px]">
+        Частые вопросы
+      </SectionHeading>
+      <ul className="flex flex-col desk:w-[560px]">
+        {faq.map((item, i) => {
+          const isOpen = open === i;
+          const panelId = `${baseId}-panel-${i}`;
+          return (
+            // Нижняя граница inside в Figma: padding 20/20 → снизу 19 + 1px border.
+            <li key={item.q} className="border-b border-line pb-[19px] pt-5">
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpen(isOpen ? null : i)}
+                className="flex w-full gap-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink/40"
+              >
+                <span className="flex-1 text-[14px] font-semibold leading-5 text-ink desk:text-[16px] desk:leading-[22px]">
+                  {item.q}
+                </span>
+                <Image
+                  src={isOpen ? landingIcons.chevronUp : landingIcons.chevronDown}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="shrink-0 self-start"
+                />
+              </button>
+              <div
+                id={panelId}
+                role="region"
+                aria-hidden={!isOpen}
+                className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+              >
+                <div className="overflow-hidden">
+                  <p className="pt-2 text-[14px] leading-5 text-ink">{item.a}</p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }

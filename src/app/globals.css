@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 60px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -24,12 +25,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-/* FAQ disclosure polish */
-details > summary {
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
+  /* Горизонтальные ленты (экраны, карточки): прокрутка есть, полосы — нет, как в Figma Sites */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,80 +1,60 @@
-"use client";
-
-import { motion } from "motion/react";
-import { Container, ContentNarrow } from "@/components/ui/Container";
-import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
-import { PhoneMock } from "@/components/ui/PhoneMock";
+import Image from "next/image";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { howScreenImages } from "@/lib/landingImagePaths";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+
+const screenAlts = [
+  "Экран уровня A1 со списком уроков",
+  "Карточка слова для повторения",
+  "Упражнение «Исправь предложение»",
+  "Карточка буквы Ба с формами написания",
+  "Экран уровня A2",
+  "Экран урока в приложении",
+] as const;
 
 const cards = [
-  {
-    title: "Короткие уроки",
-    body: "Легко вписать в любой день — 5, 10 или 30 минут на выбор.",
-    accent: "#a67c52",
-  },
+  { title: "Короткие уроки", body: "Легко вписать в любой день — 5, 10 или 30 минут на выбор." },
   {
     title: "Слушай и повторяй",
-    body: "Аудио на классическом арабском в каждом уроке — тренируй произношение и восприятие на слух с самого начала",
-    accent: "#c96f2e",
+    body: "Аудио на классическом арабском в каждом уроке - тренируй произношение и восприятие на слух с самого начала",
   },
-  {
-    title: "Персональный план",
-    body: "Приложение строит план под твою цель, уровень и время.",
-    accent: "#c4b89a",
-  },
+  { title: "Персональный план", body: "Приложение строит план под твою цель, уровень и время." },
 ] as const;
 
 export function HowItWorksSection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
-
   return (
-    <section className="py-16 sm:py-20 md:py-[88px]" aria-labelledby="how-heading">
-      <Container>
-        <ContentNarrow>
-          <h2
-            id="how-heading"
-            className="text-left text-[28px] font-bold leading-tight tracking-[-0.025em] text-ink md:text-[34px]"
-          >
-            Как проходит обучение в ILM Hub
-          </h2>
+    <section aria-labelledby="how-heading" className="flex flex-col gap-6 desk:gap-10">
+      <SectionHeading id="how-heading">
+        Как проходит обучение <br className="desk:hidden" />в ILM Hub
+      </SectionHeading>
 
-          {/* Figma: 5 телефонов вплотную, без лишней подложки за корпусом */}
-          <div className="mt-10 flex justify-center gap-2 overflow-x-auto px-1 pb-2 sm:gap-3 md:gap-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {howScreenImages.slice(0, 5).map((src, i) => (
-              <div key={src} className="w-[140px] shrink-0 sm:w-[160px] md:w-[180px] lg:w-[190px]">
-                <FigmaExportImage
-                  src={src}
-                  alt={`Экран приложения ${i + 1}`}
-                  className="aspect-[202/420] w-full"
-                  sizes="(max-width: 768px) 28vw, 190px"
-                  fallback={<PhoneMock variant="how" className="w-full" label={`Экран приложения ${i + 1}`} />}
-                />
-              </div>
-            ))}
-          </div>
+      <div className="no-scrollbar flex gap-4 overflow-x-auto">
+        {howScreenImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={screenAlts[i]}
+            width={202}
+            height={420}
+            sizes="202px"
+            className="h-[420px] w-[202px] shrink-0"
+          />
+        ))}
+      </div>
 
-          <motion.div
-            variants={st}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="mt-12 flex flex-col gap-5 md:flex-row md:gap-5"
+      <ul className="flex flex-col gap-3 desk:flex-row desk:gap-5">
+        {cards.map((card) => (
+          <li
+            key={card.title}
+            // В Figma полоса 4px — inside-обводка и не сдвигает padding (20/24), поэтому слева padding − 4px.
+            className="flex flex-1 flex-col gap-1.5 rounded-2xl border-l-4 border-card-edge bg-line py-4 pl-4 pr-5 shadow-card desk:h-36 desk:gap-2 desk:pl-5 desk:pr-6 desk:shadow-none"
           >
-            {cards.map((c) => (
-              <motion.article
-                key={c.title}
-                variants={fade}
-                className="flex-1 rounded-2xl border-0 bg-[#f5eee3] py-7 pl-6 pr-5 sm:py-8 sm:pl-7 sm:pr-6"
-                style={{ borderLeftWidth: 8, borderLeftStyle: "solid", borderLeftColor: c.accent }}
-              >
-                <h3 className="text-left text-lg font-bold leading-snug tracking-[-0.015em] text-ink">{c.title}</h3>
-                <p className="mt-3 text-left text-[15px] font-normal leading-[1.5] text-ink">{c.body}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </ContentNarrow>
-      </Container>
+            <h3 className="text-[14px] font-semibold leading-[18px] text-ink desk:text-[16px] desk:leading-5">
+              {card.title}
+            </h3>
+            <p className="text-[14px] leading-5 text-ink">{card.body}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

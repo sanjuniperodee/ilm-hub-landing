@@ -56,10 +56,10 @@ const EXPORTS = [
   { id: "220:3695", file: "how-04.png" },
   { id: "220:3696", file: "how-05.png" },
   { id: "220:3697", file: "how-06.png" },
+  { id: "220:4347", file: "hero-devices-mobile.png" },
   { id: "220:3789", file: "onboarding-phone.png" },
-  { id: "220:3825", file: "cta-phone-left.png" },
-  { id: "220:3826", file: "cta-phone-center.png" },
-  { id: "220:3827", file: "cta-phone-right.png" },
+  { id: "220:3824", file: "cta-phones-desktop.png" },
+  { id: "220:4582", file: "cta-phones-mobile.png" },
 ];
 
 function toApiId(nodeId) {

@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ilmhub.app";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -22,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "yearly",
       priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/delete-account`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 }

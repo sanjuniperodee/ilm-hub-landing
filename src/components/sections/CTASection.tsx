@@ -1,125 +1,64 @@
-"use client";
-
-import Link from "next/link";
-import { motion } from "motion/react";
-import { Container } from "@/components/ui/Container";
-import { FigmaExportImage } from "@/components/ui/FigmaExportImage";
-import { PhoneMock } from "@/components/ui/PhoneMock";
+import Image from "next/image";
+import { StoreBadge } from "@/components/ui/StoreButtons";
 import { landingImages } from "@/lib/landingImagePaths";
-import { AppleLogoWhite, GooglePlayLogo } from "@/components/ui/StoreLogos";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
 
-const noiseDataUrl =
-  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E\")";
-
+/**
+ * Финальный CTA. Фон: #efe6da + картинка в режиме Stretch, в Figma показана верхняя часть
+ * изображения (imageTransform по Y = 0.8578) — поэтому слой картинки выше блока на 1/0.8578.
+ */
 export function CTASection() {
-  const { fade, stagger: st, viewport } = useSectionReveal();
-
   return (
-    <section id="cta" className="pb-16 pt-4 sm:pb-20 md:pb-24" aria-labelledby="cta-heading">
-      <Container>
-        <motion.div
-          variants={st}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewport}
-          className="relative overflow-hidden rounded-[40px] shadow-[0_20px_50px_rgba(74,52,41,0.18)]"
-        >
-          {/* Figma: тёплый коричнево‑янтарный градиент без тяжёлого «затемнения» слева */}
-          <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-r from-[#3d2b22] via-[#5c3826] to-[#c76b2e]">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
-              style={{ backgroundImage: noiseDataUrl }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-amber-300/20"
-              aria-hidden
-            />
-
-            {/* Две колонки; по верху — компактнее по высоте, чем items-center */}
-            <div className="relative grid gap-7 px-5 py-7 sm:gap-8 sm:px-7 sm:py-8 lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-0 lg:px-9 lg:py-8 xl:gap-x-11 xl:px-11">
-              <div className="mx-auto flex w-full max-w-[480px] flex-col text-center lg:mx-0 lg:max-w-[min(100%,420px)] lg:items-center xl:max-w-[440px]">
-                <motion.h2
-                  id="cta-heading"
-                  variants={fade}
-                  className="text-balance text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-[28px] lg:text-[30px]"
-                >
-                  Начни сегодня.
-                  <br />
-                  Это бесплатно
-                </motion.h2>
-                <motion.p
-                  variants={fade}
-                  className="mt-4 text-[15px] font-normal leading-[1.55] text-white/90 sm:text-base"
-                >
-                  Скачай ILM Hub и начни уже сегодня, в своём темпе и со своей целью
-                </motion.p>
-
-                <motion.div
-                  variants={fade}
-                  className="mt-6 mx-auto flex w-full max-w-[320px] flex-col gap-3"
-                >
-                  <CtaStoreChip href="#" label="Скачать из Google Play" store="google" />
-                  <CtaStoreChip href="#" label="Загрузить в App Store" store="apple" />
-                </motion.div>
-              </div>
-
-              <motion.div variants={fade} className="flex w-full justify-center lg:justify-end lg:self-start">
-                {/*
-                  Центральный — вертикально впереди; боковые — сзади, наружу; без min-height — высота от контента.
-                */}
-                <div className="relative flex w-full max-w-[min(100%,320px)] items-end justify-center sm:max-w-[360px] lg:max-w-[min(100%,400px)] xl:max-w-[420px]">
-                  <div className="relative z-[10] w-[28%] max-w-[108px] shrink-0 origin-bottom translate-y-0.5 -rotate-[8deg] scale-[0.9] sm:max-w-[118px] lg:max-w-[126px]">
-                    <FigmaExportImage
-                      src={landingImages.ctaPhoneLeft}
-                      alt="Скрин приложения"
-                      className="aspect-[100/210] w-full"
-                      sizes="(max-width: 1024px) 28vw, 140px"
-                      fallback={<PhoneMock className="w-full" label="Скрин приложения" />}
-                    />
-                  </div>
-                  <div className="relative z-[30] -mx-[10%] w-[44%] max-w-[168px] shrink-0 origin-center rotate-0 translate-y-0 sm:max-w-[188px] lg:-mx-[11%] lg:max-w-[200px]">
-                    <FigmaExportImage
-                      src={landingImages.ctaPhoneCenter}
-                      alt="Главный экран приложения"
-                      className="aspect-[125/261] w-full"
-                      imageClassName="object-contain object-center"
-                      sizes="(max-width: 1024px) 44vw, 200px"
-                      fallback={<PhoneMock className="w-full" label="Главный экран приложения" />}
-                    />
-                  </div>
-                  <div className="relative z-[10] w-[28%] max-w-[108px] shrink-0 origin-bottom translate-y-0.5 rotate-[8deg] scale-[0.9] sm:max-w-[118px] lg:max-w-[126px]">
-                    <FigmaExportImage
-                      src={landingImages.ctaPhoneRight}
-                      alt="Скрин приложения"
-                      className="aspect-[100/210] w-full"
-                      sizes="(max-width: 1024px) 28vw, 170px"
-                      fallback={<PhoneMock className="w-full" label="Скрин приложения" />}
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </Container>
-    </section>
-  );
-}
-
-function CtaStoreChip({ href, label, store }: { href: string; label: string; store: "apple" | "google" }) {
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      title={label}
-      className="inline-flex h-14 w-full min-w-0 items-center justify-center gap-3 rounded-2xl bg-black px-5 text-white shadow-[0_8px_20px_rgba(0,0,0,0.25)] transition hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
+    <section
+      id="cta"
+      aria-labelledby="cta-heading"
+      className="relative isolate flex flex-col items-center justify-end gap-10 overflow-hidden rounded-[20px] bg-line px-5 py-[50px] desk:flex-row desk:justify-center desk:gap-[60px] desk:px-[120px]"
     >
-      <span className="flex shrink-0 items-center justify-center" aria-hidden>
-        {store === "apple" ? <AppleLogoWhite className="h-6 w-6" /> : <GooglePlayLogo className="h-6 w-6" />}
-      </span>
-      <span className="min-w-0 text-center text-[15px] font-semibold leading-snug tracking-[-0.01em]">{label}</span>
-    </Link>
+      <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[116.578%]">
+        <Image
+          src={landingImages.ctaBackground}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 1080px, 100vw"
+          className="object-fill"
+        />
+      </div>
+
+      <div className="flex w-full flex-col items-center gap-7 desk:w-auto desk:flex-1">
+        <div className="flex w-full flex-col gap-3 text-center text-white">
+          <h2
+            id="cta-heading"
+            className="text-[22px] font-semibold leading-[28px] desk:text-[28px] desk:leading-[36px]"
+          >
+            Начни сегодня.
+            <br />
+            Это бесплатно
+          </h2>
+          <p className="text-[14px] leading-5 text-white/80">
+            Скачай ILM Hub и начни уже сегодня. <br />в своем темпе и со своей целью
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-4 desk:flex-row">
+          <StoreBadge store="google" />
+          <StoreBadge store="apple" />
+        </div>
+      </div>
+
+      <Image
+        src={landingImages.ctaPhonesMobile}
+        alt="Экраны приложения ILM Hub"
+        width={305}
+        height={261}
+        sizes="305px"
+        className="desk:hidden"
+      />
+      <Image
+        src={landingImages.ctaPhonesDesktop}
+        alt="Экраны приложения ILM Hub"
+        width={425}
+        height={261}
+        sizes="425px"
+        className="hidden shrink-0 desk:block"
+      />
+    </section>
   );
 }

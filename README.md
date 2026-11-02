@@ -1,3 +1,9 @@
+> **Устарело (legacy).** Этот статический сайт больше не используется для ilmhub.kz.
+> Актуальный сайт — Next.js-приложение в [`landing/`](../landing/): главная со ссылками на App Store и Google Play,
+> `/privacy`, `/terms`, `/delete-account`. Старые адреса `/privacy.html` и `/terms.html`, на которые ссылается
+> мобильное приложение, обслуживаются там 301-редиректами (`landing/next.config.ts`).
+> Файлы ниже оставлены для истории; не публикуйте их на ilmhub.kz и не правьте юридические тексты здесь.
+
 # ILM HUB — Marketing Website
 
 Production-ready marketing website for [ilmhub.kz](https://ilmhub.kz).
